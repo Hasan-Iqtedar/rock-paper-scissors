@@ -1,4 +1,3 @@
-/**A function to get the computers choice i.e rock (0), paper(1) or scissor(2). */
 const getComputersChoice = () => {
     const choiceNumber = Math.floor(Math.random() * 3);
     switch (choiceNumber) {
@@ -14,13 +13,12 @@ const getComputersChoice = () => {
     }
 }
 
-/**A function to get player's choice using prompt. */
 const getPlayersChoice = () => {
     let playersChoice = prompt("Enter your choice. Rock, Paper or Scissors?").toLowerCase().trim();
 
     while ((playersChoice.length == 0) || (playersChoice !== 'rock' && playersChoice !== 'paper'
         && playersChoice !== 'scissors')) {
-            
+
         alert("Kindly enter a valid choice");
         playersChoice = prompt("Enter your choice. Rock, Paper or Scissors?").toLowerCase().trim();
     }
