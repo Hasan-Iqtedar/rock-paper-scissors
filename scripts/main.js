@@ -1,3 +1,6 @@
+let computerScore = 0;
+let playerScore = 0;
+
 const getComputersChoice = () => {
     const choiceNumber = Math.floor(Math.random() * 3);
     switch (choiceNumber) {
@@ -36,21 +39,25 @@ const playRound = (playersChoice, computersChoice) => {
     if ((computersChoice === 'rock' && playersChoice === 'paper') ||
         (computersChoice === 'paper' && playersChoice === 'scissors') ||
         (computersChoice === 'scissors' && playersChoice === 'rock')) {
+
+        playerScore++;
         return `You won. your choice: ${playersChoice} beats ${computersChoice}`;
     }
 
     if ((computersChoice === 'rock' && playersChoice === 'scissors') ||
         (computersChoice === 'paper' && playersChoice === 'rock') ||
         computersChoice === 'scissors' && playersChoice === 'paper') {
+
+        computerScore++;
         return `You lose. ${computersChoice} beats your choice: ${playersChoice}`;
     }
 }
 
 /**A function to play 5 rounds of the game.*/
-const game = () => {
-    for (let i = 0; i < 5; i++) {
-        console.log(playRound(getPlayersChoice(), getComputersChoice()));
-    }
-}
+// const game = () => {
+//     for (let i = 0; i < 5; i++) {
+//         console.log(playRound(getPlayersChoice(), getComputersChoice()));
+//     }
+// }
 
-game();
+// game();

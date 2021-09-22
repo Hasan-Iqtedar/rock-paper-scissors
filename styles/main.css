@@ -1,0 +1,93 @@
+body {
+    height: 100vh;
+    background-color: lightgray;
+    overflow: hidden; 
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black;
+    height: 100%;
+    width: 100%;
+}
+
+.title {
+    font-size: 50px;
+    color: maroon;
+}
+
+.buttonContainer {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    width: 50%;
+    /* border: 1px solid red; */
+}
+
+button {
+    width: 20%;
+    height: 50px;
+    font-size: x-large;
+    font-weight: bold;
+    border: 3px solid black;
+}
+
+button:hover {
+    background-color: lightgray;
+}
+
+.scoreContainer {
+    width: 27%;
+    height: 10%;
+    margin-top: 60px;
+}
+
+.scoreTitle {
+    display: flex;
+    justify-content: space-between;
+}
+
+.scoreTitle div {
+    width: 47%;
+    text-align: center;
+    color: maroon;
+    font-weight: bold;
+}
+
+.score {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#playerScore {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 45%;
+    border: 3px solid black;
+}
+
+#computerScore {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 45%;
+    border: 3px solid black;
+    text-align: center;
+    font-size: x-large;
+}
+
+#result {
+    width: 30%; 
+    height: 20%;
+    border: 1px solid black;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    font-size: x-large;
+}
