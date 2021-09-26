@@ -1,6 +1,32 @@
 let computerScore = 0;
 let playerScore = 0;
 
+let rockButton = document.querySelector('#rock');
+let paperButton = document.querySelector('#paper');
+let scissorsButton = document.querySelector('#scissor');
+
+let playerScoreDiv = document.querySelector('#playerScore');
+let computerScoreDiv = document.querySelector('#computerScore');
+let resultDiv = document.querySelector('#result');
+
+const updateScores = (playersChoice) => {
+    let result = playRound(playersChoice, getComputersChoice());
+
+    playerScoreDiv.textContent = playerScore;
+    computerScoreDiv.textContent = computerScore;
+    resultDiv.textContent = result;
+
+    if (playerScore > 4 || computerScore > 4){
+        endGame();
+    }
+}
+
+
+rockButton.addEventListener('click', () => updateScores('rock') );
+paperButton.addEventListener('click', () => updateScores('paper'));
+scissorsButton.addEventListener('click', () => updateScores('scissors'));
+
+
 const getComputersChoice = () => {
     const choiceNumber = Math.floor(Math.random() * 3);
     switch (choiceNumber) {
@@ -14,19 +40,6 @@ const getComputersChoice = () => {
             return 'scissors';
         }
     }
-}
-
-const getPlayersChoice = () => {
-    let playersChoice = prompt("Enter your choice. Rock, Paper or Scissors?").toLowerCase().trim();
-
-    while ((playersChoice.length == 0) || (playersChoice !== 'rock' && playersChoice !== 'paper'
-        && playersChoice !== 'scissors')) {
-
-        alert("Kindly enter a valid choice");
-        playersChoice = prompt("Enter your choice. Rock, Paper or Scissors?").toLowerCase().trim();
-    }
-
-    return playersChoice;
 }
 
 /**A function to compare player and computer's choice and return results. */
@@ -53,11 +66,33 @@ const playRound = (playersChoice, computersChoice) => {
     }
 }
 
-/**A function to play 5 rounds of the game.*/
-// const game = () => {
-//     for (let i = 0; i < 5; i++) {
-//         console.log(playRound(getPlayersChoice(), getComputersChoice()));
-//     }
-// }
 
-// game();
+const endGame = () => {
+    let playAgainButton = document.createElement('button');
+    
+    playAgainButton.setAttribute('id', 'play-again');
+    playAgainButton.textContent = 'Play Again';
+    
+    rockButton.disabled = true;
+    paperButton.disabled = true;
+    scissorsButton.disabled = true;
+
+    playAgainButton.addEventListener('click', () => {
+        computerScore = 0;
+        playerScore = 0;
+
+        playerScoreDiv.textContent = "";
+        computerScoreDiv.textContent = "";
+        resultDiv.textContent = "";
+
+        document.querySelector('main').removeChild(playAgainButton);
+
+        rockButton.disabled = false;
+        paperButton.disabled = false;
+        scissorsButton.disabled = false;
+
+    });
+
+    document.querySelector('main').appendChild(playAgainButton);
+
+}
