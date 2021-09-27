@@ -16,13 +16,24 @@ const updateScores = (playersChoice) => {
     computerScoreDiv.textContent = computerScore;
     resultDiv.textContent = result;
 
-    if (playerScore > 4 || computerScore > 4){
+    if (playerScore > 4 || computerScore > 4) {
+
+        resultDiv.style.cssText = "color: midnightblue;"
+        if (playerScore > computerScore) {
+            resultDiv.textContent = "You Won!"
+        }
+        else if (playerScore < computerScore) {
+            resultDiv.textContent = "You Lost!"
+        }
+        else {
+            resultDiv.textContent = "It's a tie!"
+        }
         endGame();
     }
 }
 
 
-rockButton.addEventListener('click', () => updateScores('rock') );
+rockButton.addEventListener('click', () => updateScores('rock'));
 paperButton.addEventListener('click', () => updateScores('paper'));
 scissorsButton.addEventListener('click', () => updateScores('scissors'));
 
@@ -42,11 +53,11 @@ const getComputersChoice = () => {
     }
 }
 
-/**A function to compare player and computer's choice and return results. */
+/**A function to compare player and computer's choice and return results. **/
 const playRound = (playersChoice, computersChoice) => {
 
     if (playersChoice === computersChoice) {
-        return `It's a tie. your choice: ${playersChoice} vs ${computersChoice}`;
+        return `It's a tie! ${playersChoice} vs ${computersChoice}`;
     }
 
     if ((computersChoice === 'rock' && playersChoice === 'paper') ||
@@ -54,7 +65,7 @@ const playRound = (playersChoice, computersChoice) => {
         (computersChoice === 'scissors' && playersChoice === 'rock')) {
 
         playerScore++;
-        return `You won. your choice: ${playersChoice} beats ${computersChoice}`;
+        return `You won! ${playersChoice} beats ${computersChoice}`;
     }
 
     if ((computersChoice === 'rock' && playersChoice === 'scissors') ||
@@ -62,37 +73,35 @@ const playRound = (playersChoice, computersChoice) => {
         computersChoice === 'scissors' && playersChoice === 'paper') {
 
         computerScore++;
-        return `You lose. ${computersChoice} beats your choice: ${playersChoice}`;
+        return `You lost! ${computersChoice} beats ${playersChoice}`;
     }
 }
 
 
 const endGame = () => {
     let playAgainButton = document.createElement('button');
-    
+
     playAgainButton.setAttribute('id', 'play-again');
     playAgainButton.textContent = 'Play Again';
-    
+
     rockButton.disabled = true;
     paperButton.disabled = true;
     scissorsButton.disabled = true;
 
     playAgainButton.addEventListener('click', () => {
-        computerScore = 0;
-        playerScore = 0;
-
         playerScoreDiv.textContent = "";
         computerScoreDiv.textContent = "";
         resultDiv.textContent = "";
 
+        resultDiv.style.cssText = "color: none;"
         document.querySelector('main').removeChild(playAgainButton);
 
         rockButton.disabled = false;
         paperButton.disabled = false;
         scissorsButton.disabled = false;
 
+        computerScore = 0;
+        playerScore = 0;
     });
-
     document.querySelector('main').appendChild(playAgainButton);
-
 }
